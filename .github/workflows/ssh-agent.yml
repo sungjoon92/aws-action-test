@@ -42,19 +42,25 @@ jobs:
 
       - name: Docker Image PUsh
         run: docker compose push
-      # - name: create file on remote server
-      #   run: ssh -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "touch hello-world.txt"
 
-      # - name: copy file to remote server
-      #   run: scp -P ${{secrets.SSH_PORT}} README.md ${{secrets.SSH_USERNAME}}@${{secrets.SSH_HOST}}:~/
+      - name: Copy .env / docker-compose.yml
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          source: "docker-compose-actions.yml,.env"
+          target: "~/work-directory"
 
-      # - name: Run remote command test
-      #   uses: appleboy/ssh-action@v1.2.0
-      #   with:
-      #     host: ${{ secrets.SSH_HOST }}
-      #     username: ${{ secrets.SSH_USERNAME }}
-      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
-      #     port: ${{ secrets.SSH_PORT }}
-      #     script: |
-      #       docker-compose -f docker-compose.yml pull
-      #       docker-compose -f docker-compose.yml up -d
+      - name: Pull Image & Up Container
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd ~/work-directory
+            docker compose pull 
+            docker compose up -d
