@@ -11,6 +11,13 @@ export default function HomePage() {
     setArticles(response.reverse());
   }
 
+  // 게시글 삭제
+  const handleDelete = (id) => {
+    setArticles((prevArticles) =>
+      prevArticles.filter((article) => article.id !== id)
+    );
+  };
+
   useEffect(() => {
     fetchArticles();
   }, []);
@@ -24,6 +31,7 @@ export default function HomePage() {
             key={article.id}
             article={article}
             isDetail={false}
+            onDelete={handleDelete}
           ></Article>
         );
       })}

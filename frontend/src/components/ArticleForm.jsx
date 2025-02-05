@@ -22,7 +22,10 @@ export default function ArticleForm({ fetchArticles }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    if (inputData.title.length == 0 || inputData.content.length == 0) {
+      alert("제목 또는 내용 입력값은 필수입니다");
+      return false;
+    }
     try {
       await articlesApi.postArticle(inputData);
       fetchArticles();
