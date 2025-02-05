@@ -30,7 +30,12 @@ export default function Article({ article, isDetail = false, onDelete }) {
       </h2>
       {isDetail && <p className={styles.articleContent}>{article.content}</p>}
       {!isDetail && (
-        <button onClick={() => deleteArticle(article.id)}>삭제</button>
+        <button
+          className={styles.deleteButton}
+          onClick={() => deleteArticle(article.id)}
+        >
+          삭제
+        </button>
       )}
     </div>
   );

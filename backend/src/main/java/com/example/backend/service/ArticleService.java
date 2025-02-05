@@ -47,7 +47,13 @@ public class ArticleService {
 
 		return toResponseDto(article);
 	}
-
+	
+	//삭제
+	@Transactional
+	public void deleteArticleById(Long id) {
+			Article article = articleRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Article 정보가 존재하지 않습니다" + id));
+			articleRepository.deleteById(id);
+	}// deleteArticleById() end
 
 	private ArticleResponseDto toResponseDto(Article article) {
 

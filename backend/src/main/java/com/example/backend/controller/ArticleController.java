@@ -30,4 +30,11 @@ public class ArticleController {
 		return articleService.getArticleById(id);
 	}
 
+	// 게시글 삭제
+	@DeleteMapping("/{id}")
+	public String deleteArticleById(@PathVariable Long id) {
+		articleService.deleteArticleById(id);
+		return "삭제완료";
+	}// deleteArticleById() end
+
 }

@@ -26,3 +26,8 @@
   line-height: 1.6;
   color: #555;
 }
+
+.deleteButton {
+  width: 100px;
+  height: 100px;
+}
