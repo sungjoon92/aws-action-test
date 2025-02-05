@@ -36,6 +36,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            mkdir 'work-directory'
-            cd 'work-directory'
-            touch 'hello-world.txt'
+            docker-compose -f docker-compose.yml pull
+            docker-compose -f docker-compose.yml up -p
