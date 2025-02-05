@@ -37,4 +37,4 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             docker-compose -f docker-compose.yml pull
-            docker-compose -f docker-compose.yml up -p
+            docker-compose -f docker-compose.yml up -d
