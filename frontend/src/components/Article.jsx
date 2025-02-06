@@ -46,28 +46,42 @@ export default function Article({ article, isDetail = false, onDelete }) {
       }
     }
   }
-
+  // article.id 변경이나 isDeleted가 변경될 때마다 새로운 데이터 가져오기
   useEffect(() => {
-    return (
-      <div className={styles.articlesContainer}>
-        <h2
-          onClick={() => {
-            Navigate(`/article/${article.id}`);
-          }}
-          className={`${styles.articleTitle} ${!isDetail && styles.pointer}`}
+    // isDeleted가 변경될 때마다 새로운 데이터를 받아오도록 설정
+    const fetchArticleData = async () => {
+      if (isDeleted) {
+        try {
+          const response = await articlesApi.getArticleById(article.id); // 예시 API 호출
+          setUpdatedArticle(response.data);
+          console.log("새로운 데이터:", response.data);
+        } catch (error) {
+          console.error("데이터를 불러오는 중 오류 발생:", error);
+        }
+      }
+    };
+
+    fetchArticleData();
+  }, [article.id, isDeleted]); // 의존성 배열에 isDeleted 추가
+  return (
+    <div className={styles.articlesContainer}>
+      <h2
+        onClick={() => {
+          Navigate(`/article/${article.id}`);
+        }}
+        className={`${styles.articleTitle} ${!isDetail && styles.pointer}`}
+      >
+        {article.title}
+      </h2>
+      {isDetail && <p className={styles.articleContent}>{article.content}</p>}
+      {!isDetail && (
+        <button
+          className={styles.deleteButton}
+          onClick={() => deleteArticle(article.id)}
         >
-          {article.title}
-        </h2>
-        {isDetail && <p className={styles.articleContent}>{article.content}</p>}
-        {!isDetail && (
-          <button
-            className={styles.deleteButton}
-            onClick={() => deleteArticle(article.id)}
-          >
-            삭제
-          </button>
-        )}
-      </div>
-    );
-  }, [article.id, isDeleted]);
+          삭제
+        </button>
+      )}
+    </div>
+  );
 }
