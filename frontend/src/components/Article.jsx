@@ -17,6 +17,7 @@ export default function Article({ article, isDetail = false, onDelete }) {
       cancelButtonColor: "#d33",
       confirmButtonText: "네, 삭제합니다!",
       cancelButtonText: "취소",
+      draggable: true,
     });
 
     if (result.isConfirmed) {
