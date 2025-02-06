@@ -7,8 +7,6 @@ import Swal from "sweetalert2";
 export default function Article({ article, isDetail = false, onDelete }) {
   const Navigate = useNavigate();
 
-  const [isDeleted, setIsDeleted] = useState(false);
-
   async function deleteArticle(id) {
     const result = await Swal.fire({
       title: "정말로 삭제하시겠습니까?",
@@ -35,7 +33,7 @@ export default function Article({ article, isDetail = false, onDelete }) {
         });
       } catch (error) {
         console.error("삭제 실패:", error);
-        setIsDeleted(true);
+        onDelete(id); // 삭제 실패 시에도 상태 업데이트 트리거
 
         // 삭제 실패 알림
         await Swal.fire({
@@ -46,23 +44,9 @@ export default function Article({ article, isDetail = false, onDelete }) {
       }
     }
   }
-  // article.id 변경이나 isDeleted가 변경될 때마다 새로운 데이터 가져오기
-  useEffect(() => {
-    // isDeleted가 변경될 때마다 새로운 데이터를 받아오도록 설정
-    const fetchArticleData = async () => {
-      if (isDeleted) {
-        try {
-          const response = await articlesApi.getArticles(); // 예시 API 호출
-          setUpdatedArticle(response.data);
-          console.log("새로운 데이터:", response.data);
-        } catch (error) {
-          console.error("데이터를 불러오는 중 오류 발생:", error);
-        }
-      }
-    };
 
-    fetchArticleData();
-  }, [article.id, isDeleted]); // 의존성 배열에 isDeleted 추가
+  useEffect(() => {}, [article.id, isDeleted]);
+
   return (
     <div className={styles.articlesContainer}>
       <h2
