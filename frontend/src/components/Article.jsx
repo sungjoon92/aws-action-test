@@ -52,7 +52,7 @@ export default function Article({ article, isDetail = false, onDelete }) {
     const fetchArticleData = async () => {
       if (isDeleted) {
         try {
-          const response = await articlesApi.getArticles(article.id); // 예시 API 호출
+          const response = await articlesApi.getArticles(); // 예시 API 호출
           setUpdatedArticle(response.data);
           console.log("새로운 데이터:", response.data);
         } catch (error) {
