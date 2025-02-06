@@ -45,7 +45,7 @@ export default function Article({ article, isDetail = false, onDelete }) {
     }
   }
 
-  useEffect(() => {}, [article.id, isDeleted]);
+  useEffect(() => {}, [article.id]);
 
   return (
     <div className={styles.articlesContainer}>
