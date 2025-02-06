@@ -56,7 +56,7 @@ export default function ArticleForm({ fetchArticles }) {
           className={styles.textarea}
         />
         <button type="submit" className={styles.button}>
-          Article 생성
+          글쓰기
         </button>
       </form>
     </div>

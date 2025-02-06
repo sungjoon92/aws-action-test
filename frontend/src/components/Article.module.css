@@ -20,7 +20,10 @@
 .pointer {
   cursor: pointer;
 }
-
+.pointer:hover {
+  color: blue;
+  transition: 1s;
+}
 .articleContent {
   font-size: 16px;
   line-height: 1.6;
