@@ -33,7 +33,6 @@ export default function HomePage() {
             key={article.id}
             article={article}
             isDetail={false}
-            isDeleted={false}
             onDelete={handleDelete}
           ></Article>
         );
