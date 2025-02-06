@@ -8,6 +8,7 @@ export default function Article({ article, isDetail = false, onDelete }) {
   const Navigate = useNavigate();
 
   const [isDeleted, setIsDeleted] = useState(false);
+
   async function deleteArticle(id) {
     const result = await Swal.fire({
       title: "정말로 삭제하시겠습니까?",
@@ -46,27 +47,27 @@ export default function Article({ article, isDetail = false, onDelete }) {
     }
   }
 
-  useEffect(() => {}, [article.id, isDeleted]);
-
-  return (
-    <div className={styles.articlesContainer}>
-      <h2
-        onClick={() => {
-          Navigate(`/article/${article.id}`);
-        }}
-        className={`${styles.articleTitle} ${!isDetail && styles.pointer}`}
-      >
-        {article.title}
-      </h2>
-      {isDetail && <p className={styles.articleContent}>{article.content}</p>}
-      {!isDetail && (
-        <button
-          className={styles.deleteButton}
-          onClick={() => deleteArticle(article.id)}
+  useEffect(() => {
+    return (
+      <div className={styles.articlesContainer}>
+        <h2
+          onClick={() => {
+            Navigate(`/article/${article.id}`);
+          }}
+          className={`${styles.articleTitle} ${!isDetail && styles.pointer}`}
         >
-          삭제
-        </button>
-      )}
-    </div>
-  );
+          {article.title}
+        </h2>
+        {isDetail && <p className={styles.articleContent}>{article.content}</p>}
+        {!isDetail && (
+          <button
+            className={styles.deleteButton}
+            onClick={() => deleteArticle(article.id)}
+          >
+            삭제
+          </button>
+        )}
+      </div>
+    );
+  }, [article.id, isDeleted]);
 }
