@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 export default function Article({ article, isDetail = false, onDelete }) {
   const Navigate = useNavigate();
 
+  const [isDeleted, setIsDeleted] = useState(false);
   async function deleteArticle(id) {
     const result = await Swal.fire({
       title: "정말로 삭제하시겠습니까?",
@@ -33,6 +34,7 @@ export default function Article({ article, isDetail = false, onDelete }) {
         });
       } catch (error) {
         console.error("삭제 실패:", error);
+        setIsDeleted(true);
 
         // 삭제 실패 알림
         await Swal.fire({
@@ -44,7 +46,7 @@ export default function Article({ article, isDetail = false, onDelete }) {
     }
   }
 
-  useEffect(() => {}, [article.id]);
+  useEffect(() => {}, [article.id, isDeleted]);
 
   return (
     <div className={styles.articlesContainer}>
