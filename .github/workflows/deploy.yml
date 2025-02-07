@@ -16,7 +16,7 @@ jobs:
       - name: Cache Docker Image Layer
         uses: actions/cache@v4.2.0 # Docker 이미지 레이어를 캐싱하여 빌드 속도 향상
         with:
-          path: /tmp.buildx-cache # 캐싱할 경로 설정
+          path: /tmp/.buildx-cache # 캐싱할 경로 설정
           key: docker-image-layer-cache # 캐시 키 설정
 
       - name: run ssh-agent
