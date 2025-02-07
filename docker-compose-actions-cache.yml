@@ -20,7 +20,7 @@ services:
     build: # 이미지 build 관련 설정
       context: ./backend
       # 캐시 저장 경로
-      cache-to:
+      cache_to:
         - type=local,dest=/tmp.buildx-cache/backend,mode=max
         # type: 캐시의 종류
         # src: 캐시를 불러올 경로
