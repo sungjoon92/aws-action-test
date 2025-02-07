@@ -62,7 +62,7 @@ jobs:
         # Docker Compose를 사용해 애플리케이션 빌드
 
       - name: Login DockerHub
-        run: echo '${{ secrets.DOCKER_PASSWORD }}' | docker login -u '${{ secrets.DOCKER_USERNAME}}' --password-stdin
+        run: echo '${{ secrets.DOCKER_PASSWORD }}' | docker login -u '${{ secrets.DOCKER_USERNAME }}' --password-stdin
         # DockerHub 로그인 (GitHub Secrets에서 Docker 계정 정보 가져옴)
 
       - name: Docker Image Push
@@ -95,14 +95,16 @@ jobs:
             docker compose -f docker-compose-actions-cache.yml down   
             docker compose -f docker-compose-actions-cache.yml up -d
 
-      - name: Start Message - seccess
-        uses: sarisia/actions-status-discord@v1 # 디스코드 웹훅을 사용해 배포 시작 알림 전송
+          - name: Start Message - success
+        if: success() # 성공 시 실행
+        uses: sarisia/actions-status-discord@v1
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          title: "배포시작"
+          title: "배포 성공 🎉"
 
       - name: Start Message - fail
-        uses: sarisia/actions-status-discord@v1 # 디스코드 웹훅을 사용해 배포 시작 알림 전송
+        if: failure() # 실패 시 실행
+        uses: sarisia/actions-status-discord@v1
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          title: "배포종료"
+          title: "배포 실패 ❌"
