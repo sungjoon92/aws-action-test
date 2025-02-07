@@ -12,23 +12,19 @@ services:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
       timeout: 5s
-      retries: 3
-      start_period: 30s
+      retries: 5
+      start_period: 60s
+    ports:
+      - "3306:3306" # MySQL을 호스트에서도 접속 가능하게 설정
 
   backend:
     container_name: backend-container
-    build: # 이미지 build 관련 설정
+    build:
       context: ./backend
-      # 캐시 저장 경로
       cache-to:
         - type=local,dest=/tmp.buildx-cache/backend,mode=max
-        # type: 캐시의 종류
-        # src: 캐시를 불러올 경로
-        # mode: 캐시의 저장 방식(max : 최대한 많은 캐시 데이터를 저장)
-      # 캐시를 불러올 경로
       cache_from:
         - type=local,src=/tmp.buildx-cache/backend
-
     image: wonsungjoon/backend:latest
     env_file:
       - .env
@@ -53,8 +49,10 @@ services:
     networks:
       - backend-connect
     depends_on:
-      - backend
-      - db
+      backend:
+        condition: service_started
+      db:
+        condition: service_healthy
 
 volumes:
   db-volume:
