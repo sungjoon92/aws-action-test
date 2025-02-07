@@ -100,7 +100,7 @@ jobs:
         uses: sarisia/actions-status-discord@v1
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          title: "배포 성공 🎉"
+          title: "배포 성공 !🎉"
 
       - name: Start Message - fail
         if: failure() # 실패 시 실행
