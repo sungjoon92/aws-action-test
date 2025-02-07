@@ -40,9 +40,9 @@ jobs:
           echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" >> .env
         # 환경 변수 파일(.env) 생성 및 GitHub Secrets에서 값 가져와 설정
 
-      # 권한 설정 추가
-      - name: Set Permissions for buildx cache
-        run: sudo chmod -R 777 /tmp
+      # # 권한 설정 추가
+      # - name: Set Permissions for buildx cache
+      #   run: sudo chmod -R 777 /tmp
 
       # docker buildKit 엔진 설정 action(라이브러리)
       - name: Set up Docker buildKit
@@ -96,7 +96,7 @@ jobs:
           script: |
             cd ~/work-directory   
             docker compose -f docker-compose-actions-cache.yml pull   
-            docker compose -f docker-compose-actions-cache.yml down   
+            docker compose -f docker-compose-actions-cache.yml down -v 
             docker compose -f docker-compose-actions-cache.yml up -d
 
       - name: Start Message - success
