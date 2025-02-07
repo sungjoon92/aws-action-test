@@ -96,7 +96,7 @@ jobs:
           script: |
             cd ~/work-directory   
             docker compose -f docker-compose-actions-cache.yml pull   
-            docker compose -f docker-compose-actions-cache.yml down -v 
+            docker compose -f docker-compose-actions-cache.yml down  
             docker compose -f docker-compose-actions-cache.yml up -d
 
       - name: Start Message - success
