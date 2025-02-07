@@ -99,6 +99,12 @@ jobs:
             docker compose -f docker-compose-actions-cache.yml down  
             docker compose -f docker-compose-actions-cache.yml up -d
 
+      - name: Start Message
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          title: "배포 시작! ★"
+
       - name: Start Message - success
         if: success() # 성공 시 실행
         uses: sarisia/actions-status-discord@v1
