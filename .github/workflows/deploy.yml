@@ -95,14 +95,14 @@ jobs:
             docker compose -f docker-compose-actions-cache.yml down   
             docker compose -f docker-compose-actions-cache.yml up -d
 
-      - name: Start Message - seccess
-        uses: sarisia/actions-status-discord@v1 # 디스코드 웹훅을 사용해 배포 시작 알림 전송
-        with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          title: "배포시작"
+      # - name: Start Message - seccess
+      #   uses: sarisia/actions-status-discord@v1 # 디스코드 웹훅을 사용해 배포 시작 알림 전송
+      #   with:
+      #     webhook: ${{ secrets.DISCORD_WEBHOOK }}
+      #     title: "배포시작"
 
-      - name: Start Message - fail
-        uses: sarisia/actions-status-discord@v1 # 디스코드 웹훅을 사용해 배포 시작 알림 전송
-        with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          title: "배포종료"
+      # - name: Start Message - fail
+      #   uses: sarisia/actions-status-discord@v1 # 디스코드 웹훅을 사용해 배포 시작 알림 전송
+      #   with:
+      #     webhook: ${{ secrets.DISCORD_WEBHOOK }}
+      #     title: "배포종료"
