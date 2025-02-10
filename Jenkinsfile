@@ -3,12 +3,12 @@ pipeline {
     stages {
         stage('Practice') {
             steps {
-                script{
+                script {
                 // withCredentials : Credentials 서비스를 활용하겠다
                 // file : secret file을 불러오겠다
                 // credentialsId : 불러올 file의 식별 ID
                 // variable : 블록 내부에서 사용할 변수명
-                    withCredentials([file(credentialsId: 'env-file', variable: 'env_file')]){
+                    withCredentials([file(credentialsId: 'env-file', variable: 'env_file')]) {
                         // 젠킨스 서비스 내 .env 파일을
                         // 파이프라인 프로젝트 내부로 복사
                         sh 'cp $env_file .env'
@@ -19,6 +19,15 @@ pipeline {
                         sh 'chmod 644 .env'
 
                     }
+                }
+            }
+        }
+
+        stage("Docker Image build & COntainer Run"){
+            steps{
+                script{
+                    sh 'docker compose build'
+                    sh 'docker compose up -d'
                 }
             }
         }
