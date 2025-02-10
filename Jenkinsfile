@@ -51,13 +51,15 @@ pipeline {
             steps{
                 script{
                     sh 'docker compose build'
+                    sh 'docker compose down'
                     sh 'docker compose up -d'
+                    sh 'docker image prune -f'
                 }// script end
             }// steps end
         }// stage("Docker Image build & COntainer Run")() end
     }// stages() end
  
- 
+
   post {
         success {
             withCredentials([string(credentialsId: 'discord-webhook', variable: 'discord_webhook')]) {
