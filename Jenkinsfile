@@ -23,7 +23,7 @@ pipeline {
                 }// script end
             }// steps end
         }// stage('add nev file') end
-
+ 
         stage('build start') {
             steps {
                 script {
