@@ -46,7 +46,6 @@ pipeline {
                 }// script end
             }// steps end
         }// stage('build start') end
-
         
         stage("Docker Image build & COntainer Run"){
             steps{
