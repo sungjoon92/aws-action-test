@@ -17,14 +17,11 @@ pipeline {
                         // 그외 : 읽기 권한
                         // 권한 : 읽기4 쓰기2 실행1
                         sh 'chmod 644 .env'
-
                     }
-
-                    script {
-                    // Jenkins Credentials에서 Secret Text 가져오기
-                    // credentialsId : credentials 생성 당시 작성한 
-                    // variable : 스크립트 내부에서 사용할 변수 이름 
-                    withCredentials([string(credentialsId: 'discord-webhook', variable: 'discord_webhook')]) {
+                        // Jenkins Credentials에서 Secret Text 가져오기
+                        // credentialsId : credentials 생성 당시 작성한 
+                        // variable : 스크립트 내부에서 사용할 변수 이름 
+                        withCredentials([string(credentialsId: 'discord-webhook', variable: 'discord_webhook')]) {
                         // 디스코드 알림 메세지 작성 
                         // description : 메세지 설명문
                         // link : Jenkins BUILD 주소
@@ -37,6 +34,7 @@ pipeline {
                         title: "${env.JOB_NAME} : ${currentBuild.displayName} 시작", 
                         webhookURL: "$discord_webhook"
                     }
+                    
                 }
             }
         }
