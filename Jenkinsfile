@@ -57,7 +57,7 @@ pipeline {
         }// stage("Docker Image build & COntainer Run")() end
     }// stages() end
  
-
+ 
   post {
         success {
             withCredentials([string(credentialsId: 'discord-webhook', variable: 'discord_webhook')]) {
