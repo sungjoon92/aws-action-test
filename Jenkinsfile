@@ -56,7 +56,7 @@ pipeline {
             }// steps end
         }// stage("Docker Image build & COntainer Run")() end
     }// stages() end
-
+ 
 
 
   post {
