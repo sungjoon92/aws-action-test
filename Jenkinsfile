@@ -77,7 +77,7 @@ pipeline {
                         link: env.BUILD_URL, result: currentBuild.currentResult, 
                         title: "${env.JOB_NAME} : ${currentBuild.displayName} 실패", 
                         webhookURL: "$discord_webhook"
-            }
+            } 
         }
     }
 }
