@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('build start') {
+        stage('add nev file') {
             steps {
                 script {
                     
@@ -19,12 +19,13 @@ pipeline {
                         // 그외 : 읽기 권한
                         // 권한 : 읽기4 쓰기2 실행1
                         sh 'chmod 644 .env'
-                    }
+                    }// withCredentials() end
+                }// script end
+            }// steps end
+        }// stage('add nev file') end
 
-            
-                }
-            }
-             steps {
+        stage('build start') {
+            steps {
                 script {
                 // Jenkins Credentials에서 Secret Text 가져오기
                 // credentialsId : credentials 생성 당시 작성한 
@@ -41,20 +42,21 @@ pipeline {
                         link: env.BUILD_URL, 
                         title: "${env.JOB_NAME} : ${currentBuild.displayName} 시작", 
                         webhookURL: "$discord_webhook"
-                    }
-                }
-            }
-        }
+                    }// withCredentials() end
+                }// script end
+            }// steps end
+        }// stage('build start') end
 
+        
         stage("Docker Image build & COntainer Run"){
             steps{
                 script{
                     sh 'docker compose build'
                     sh 'docker compose up -d'
-                }
-            }
-        }
-    } 
+                }// script end
+            }// steps end
+        }// stage("Docker Image build & COntainer Run")() end
+    }// stages() end
 
 
 
