@@ -22,6 +22,9 @@ body {
   font-weight: bold;
   margin-bottom: 15px;
   color: #333;
+
+  display: inline-block;
+  animation: heartbeat 1s ease-in-out infinite;
 }
 
 .pointer {
@@ -40,8 +43,6 @@ body {
 .deleteButton {
   width: 100px;
   height: 50%;
-  display: inline-block;
-  animation: heartbeat 1s ease-in-out infinite;
 }
 @keyframes heartbeat {
   0% {
