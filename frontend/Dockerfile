@@ -16,8 +16,8 @@ COPY --from=build /app/dist /usr/share/nginx/html
 # CMD ["nginx", "-g", "daemon off;"]
 
 #모듈화된 서버 설정 파일을 복사
-COPY ./templates /etc/nginx/templates
 COPY nginx.conf /etc/nginx/nginx.conf
+COPY ./templates /etc/nginx/templates
 
 EXPOSE 80 443
 CMD ["nginx", "-g", "daemon off;"]
