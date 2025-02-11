@@ -10,7 +10,15 @@ COPY . .
 RUN npm run build
 
 FROM nginx:mainline-alpine-slim
-COPY --from=build /app/dist /usr/share/nginx/html
+# COPY --from=build /app/dist /usr/share/nginx/html
+# COPY nginx.conf /etc/nginx/nginx.conf
+# EXPOSE 80
+# CMD ["nginx", "-g", "daemon off;"]
+
+#모듈화된 서버 설정 파일을 복사
+COPY ./conf.d /etc/nginx/conf.d
 COPY nginx.conf /etc/nginx/nginx.conf
-EXPOSE 80
+
+EXPOSE 80 443
 CMD ["nginx", "-g", "daemon off;"]
+
