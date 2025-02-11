@@ -6,9 +6,9 @@ server {
 
 			# SSL 인증서 설정
 			# 인증서와 공개키 파일
-			ssl_certificate /etc/letsencrypt/live/3.35.156.97.sslip.io/fullchain.pem;
+			ssl_certificate /etc/letsencrypt/live/${DOMAIN}/fullchain.pem;
 			# 개인키 파일
-			ssl_certificate_key /etc/letsencrypt/live/3.35.156.97.sslip.io/privkey.pem;
+			ssl_certificate_key /etc/letsencrypt/live/${DOMAIN}/privkey.pem;
 
 			# SSL 보안 설정
 			ssl_protocols TLSv1.2 TLSv1.3;
