@@ -56,6 +56,8 @@ services:
       args:
         VITE_API_URL: ${VITE_API_URL}
     image: wonsungjoon/frontend:latest
+    env_file:
+      - .env
     environment:
       - DOMAIN=3.35.156.97.sslip.io
     ports:

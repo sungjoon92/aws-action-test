@@ -44,6 +44,8 @@ jobs:
           echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> .env
           echo "MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}" >> .env
           echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" >> .env
+          echo "DOMAIN=${{ secrets.DOMAIN }}" >> .env
+          echo "API_URL=${{ secrets.API_URL }}" >> .env
         # 환경 변수 파일(.env) 생성 및 GitHub Secrets에서 값 가져와 설정
 
       # # 권한 설정 추가
