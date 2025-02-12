@@ -53,12 +53,17 @@ export default function Article({ article, isDetail = false, onDelete }) {
       <h2
         onClick={() => {
           Navigate(`/article/${article.id}`);
+          console.log(article.id);
+          console.log(article.title);
+          console.log(article.content);
+          console.log(article);
         }}
         className={`${styles.articleTitle} ${!isDetail && styles.pointer}`}
       >
         {article.title}
       </h2>
-      {isDetail && <p className={styles.articleContent}>{article.content}</p>}
+      {isDetail && <p className={styles.articleContent}>{article?.content}</p>}
+      <img src={article.imageUrl} className={styles.article_image}></img>
       {!isDetail && (
         <button
           className={styles.deleteButton}

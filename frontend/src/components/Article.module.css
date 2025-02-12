@@ -5,7 +5,7 @@ body {
 }
 
 .articlesContainer {
-  max-width: 800px;
+  max-width: 600px;
   margin: 20px auto;
   padding: 20px;
   border: 1px solid #ddd;
@@ -18,13 +18,17 @@ body {
   align-items: center;
 }
 
+.articlesContainer > * {
+  width: 33.333%;
+  text-align: center;
+}
 .articleTitle {
   font-weight: bold;
   margin-bottom: 15px;
   color: #333;
 
   display: inline-block;
-  animation: heartbeat 1s ease-in-out infinite;
+  animation: heartbeat 3s ease-in-out infinite;
 }
 
 .pointer {
@@ -33,6 +37,11 @@ body {
 .pointer:hover {
   color: blue;
   transition: 0.5s;
+}
+
+.article_image {
+  width: 100px;
+  height: 100px;
 }
 .articleContent {
   font-size: 16px;

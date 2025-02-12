@@ -17,6 +17,14 @@ const articlesApi = {
     const response = await api.delete(`articles/${id}`);
     return response.data;
   },
+  postArticle: async (data) => {
+    const resposne = await api.post(`articles`, data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return resposne.data;
+  },
 };
 
 export default articlesApi;
